@@ -3,7 +3,7 @@ import praw
 import urllib
 import os
 import time
-# this will go to reddit and download the top 100 items of the week from MemEconomy into a folder that I will set to my
+# this will go to reddit and download the top 100 items of the week from whatever subreddit you want into a folder that I will set to my
 # background every week.
 
 # define user agent
