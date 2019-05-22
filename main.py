@@ -1,6 +1,6 @@
 _author_ = "Marcus Salinas"
 import praw
-import urllib
+from urllib import request
 import os
 import time
 # this will go to reddit and download the top 100 items of the week from whatever subreddit you want into a folder that I will set to my
@@ -29,24 +29,24 @@ reddit = praw.Reddit(client_id=clientID,
                      username=userName,
                      user_agent=user_agent)
 
-os.chdir('C:\Users\Marcus\Pictures\DankMemes')
-newDir = os.getcwd() + '\Dank Memes - ' + str(time.strftime("%m-%d-%Y"))
+os.chdir("C:\\Users\\Marcus\\Google Drive\\DankMemes")
+newDir = os.getcwd() + "\\Dank Memes - " + str(time.strftime("%Y-%m-%d"))
 
 if not os.path.exists(newDir):
     os.mkdir(newDir)
 
 os.chdir(newDir)
 
-dankmemes = reddit.subreddit("dankchristianmemes").top(time_filter="week",limit=75)
+dankmemes = reddit.subreddit("dankchristianmemes").top(time_filter="week",limit=150)
 memeCount = 1
 
 
 for meme in dankmemes:
-    print "On Meme: " + str(memeCount)
+    print("On Meme: " + str(memeCount))
     try:
-        url = meme.url.encode('utf-8')
-        urllib.urlretrieve(url,str(memeCount)+'.jpg')
+        url = meme.url
+        request.urlretrieve(url,str(memeCount)+'.jpg')
         memeCount+=1
-    except:
-        print "Not working. "
+    except Exception as e:
+        print("Not working. ")
 
